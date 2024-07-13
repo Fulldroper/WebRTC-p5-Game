@@ -53,25 +53,25 @@ Document.prototype.router = {
 }
 
 // Create peer connection
-const peer = new Peer(
-  { 
-  config: {'iceServers': [
-    { 'urls': 'stun:stun.l.google.com:19302' },
-    {
-      urls: 'turn:openrelay.metered.ca:80',
-      username: 'openrelayproject',
-      credentials: 'openrelayproject'
-    }
-  ] },
-  timeout: 120000
-}
-);
+let peer 
 
-// handle if has server connection
-peer.on("open", (id) => {
-  online.id = id;
-  document.router.hostID == online.id ? host() : client();
-})
+(async function() {
+  const response = await fetch("https://fulldroper.metered.live/api/v1/turn/credentials?apiKey=20b057434f2dba67cce42dbf43a66658ba5d");
+  const servers = await response.json()
+  peer = new Peer(
+    { 
+    config: {'iceServers':  servers},
+    timeout: 120000
+    }
+  );
+  
+  // handle if has server connection
+  peer.on("open", (id) => {
+    online.id = id;
+    document.router.hostID == online.id ? host() : client();
+  })
+})()
+
 
 const ipc = {
  "init" : function ({
