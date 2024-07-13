@@ -356,6 +356,21 @@ function setup() {
 window.onresize = _ => resizeCanvas(camera.vw, camera.vh)
 window.onkeydown = ({code}) => controller.pressed(code)
 window.onkeyup = ({code}) => controller.released(code)
+window.onmousedown = ({pageX: X, pageY: Y}) => {
+  const { x, y } = camera.anchor
+  if (X > x) {
+    controller.state.push(controller.keys.right)
+  } else if (X < x) {
+    controller.state.push(controller.keys.left)
+  }
+
+  if (Y > y) {
+    controller.state.push(controller.keys.down)
+  } else if (Y < y) {
+    controller.state.push(controller.keys.up)
+  }
+}
+window.onmouseup = () => controller.flush()
 window.onblur = () => controller.flush()
 
 function draw() {
