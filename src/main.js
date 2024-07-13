@@ -58,9 +58,9 @@ const peer = new Peer(
   config: {'iceServers': [
     { 'urls': 'stun:stun.l.google.com:19302' },
     {
-      url: 'turn:turn.anyfirewall.com:443?transport=tcp',
-      credential: 'webrtc',
-      username: 'webrtc'
+      urls: 'turn:openrelay.metered.ca:80',
+      username: 'openrelayproject',
+      credentials: 'openrelayproject'
     }
   ] },
   timeout: 120000
