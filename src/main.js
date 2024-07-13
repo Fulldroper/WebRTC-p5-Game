@@ -54,10 +54,13 @@ Document.prototype.router = {
 
 // Create peer connection
 const peer = new Peer(
-//   { 
-//   config: {'iceServers': [{ 'urls': 'stun:stun.l.google.com:19302' }] },
-//   timeout: 120000
-// }
+  { 
+  config: {'iceServers': [
+    { 'urls': 'stun:stun.l.google.com:19302' },
+    { 'urls': 'turn:turn02.hubl.in?transport=tcp'}
+  ] },
+  timeout: 120000
+}
 );
 
 // handle if has server connection
