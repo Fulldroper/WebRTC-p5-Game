@@ -53,10 +53,12 @@ Document.prototype.router = {
 }
 
 // Create peer connection
-const peer = new Peer({ 
-  config: {'iceServers': [{ 'urls': 'stun:stun.l.google.com:19302' }] },
-  timeout: 120000
-});
+const peer = new Peer(
+//   { 
+//   config: {'iceServers': [{ 'urls': 'stun:stun.l.google.com:19302' }] },
+//   timeout: 120000
+// }
+);
 
 // handle if has server connection
 peer.on("open", (id) => {
@@ -89,18 +91,18 @@ const ipc = {
         users.push(new User(user))
       }
     })
-    // if (users.length !== (array.length + 1)) {
-    //   const arraySet = new Set(array.map(user => user.id));
-    //   users = users.filter(user => {
+      // if (users.length !== (array.length + 1)) {
+      //   const arraySet = new Set(array.map(user => user.id));
+      //   users = users.filter(user => {
 
-    //     console.log(
-    //       arraySet.has(user.id), user.id
-    //       ,user.id == online.id, online.id
-    //     );
+      //     console.log(
+      //       arraySet.has(user.id), user.id
+      //       ,user.id == online.id, online.id
+      //     );
 
-    //     return (arraySet.has(user.id) && user.id == online.id)
-    //   })
-    // }
+      //     return (arraySet.has(user.id) && user.id == online.id)
+      //   })
+      // }
   }
 }
 
